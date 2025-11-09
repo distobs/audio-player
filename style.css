@@ -27,18 +27,19 @@ body {
 	margin-top: 10%;
 }
 
-.sample, .add-sample-button {
+.sample-button {
 	border: thin solid white;
-	padding: 20%;
-	margin: auto;
+	padding: 30%;
+	margin: 1rem;
 	margin-bottom: 20%;
+	text-align: center;
 }
 
-.add-sample-button {
+#add-sample {
 	font-size: 1rem;
 }
 
-.sample:hover, .add-sample-button:hover {
+.sample-button:hover {
 	background-color: white;
 	color: black;
 	cursor: pointer;
@@ -63,6 +64,7 @@ body {
 	padding: 5%;
 	border: thin solid white;
 	width: 30%;
+	text-align: center;
 }
 
 .hidden {
@@ -80,7 +82,6 @@ body {
 	display: flex;
 	justify-content: center;
 	justify-self: center;
-	text-align: center;
 	flex-flow: row wrap;
 }
 
