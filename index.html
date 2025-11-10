@@ -22,21 +22,31 @@
 
 		<div class="popup-container">
 			<div class="popup-wrapper">
-				<form id="form" class="file-form">
-					<label class="form-label" for="name">
+				<form id="popup-form" class="file-form">
+					<label class="popup-form-label" for="name">
 						<p>Nome</p>
 						<input class="text-input" name="name" type="text"/>
 					</label>
 
-					<label class="form-label" for="file">
+					<label class="popup-form-label" for="file">
 						<p>Arquivo</p>
-						<input class="file-input" name="file" type="file"/>
+						<input accept="audio/*" class="file-input"
+							name="file" type="file"/>
 					</label>
 
 					<button type="submit">Enviar</button>
 				</form>
 				<button id="popup-closer">Sair</button>
 			</div>
+		</div>
+
+		<div class="button-container">
+			<button id="save-button">Salvar</button>
+
+			<form id="load-form">
+				<input accept="application/json" name="file" type="file"/>
+				<button type="submit" id="load-button">Carregar</button>
+			</form>
 		</div>
 
 		<script src="./script.js"></script>

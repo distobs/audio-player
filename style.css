@@ -73,7 +73,7 @@ body {
 
 /* FORM */
 
-.form-label {
+.popup-form-label {
 	width: 100%;
 	padding: 1rem;
 }
@@ -97,4 +97,15 @@ body {
 	margin: 1%;
 	background-color: white;
 	color: black;
+}
+
+/* SAVE-LOAD */
+
+.button-container {
+	width: 50%;
+	margin: auto;
+}
+
+.button-container > * {
+	margin: 1rem;
 }
