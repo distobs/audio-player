@@ -1,1 +1,2 @@
 FIX: loading two files causes them to be joined together.
+ADD: visual distincion between playing and not-playing.
