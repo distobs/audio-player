@@ -28,11 +28,20 @@ body {
 }
 
 .sample-button {
+	display: flex;
+	justify-content: center;
 	border: thin solid white;
-	padding: 30%;
-	margin: 1rem;
-	margin-bottom: 20%;
+	height: 5rem;
+	width: 5rem;
+	padding: 3rem 3rem 3rem 3rem;
+	margin: 0.5rem 0.5rem 0.5rem 0.5rem;
 	text-align: center;
+}
+
+.sample-button > p {
+	padding: auto;
+	margin: auto;
+	overflow: scroll;
 }
 
 #add-sample {
