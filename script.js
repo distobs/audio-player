@@ -161,9 +161,10 @@ file_form.addEventListener("submit", (event) => {
 
 	const name = file_form.elements.name.value;
 	const file = file_form.elements.file.files[0];
-	const is_audio = file.type.search("^audio/");
+	const is_audio = (!(file.type.search("^audio/") == -1) ||
+		file.type == "application/ogg");
 
-	if (!name || !file || is_audio == -1) {
+	if (!name || !file || !is_audio) {
 		alert("Favor, preencher os campos corretamente.");
 		return;
 	} else {

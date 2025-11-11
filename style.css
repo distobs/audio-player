@@ -41,7 +41,7 @@ body {
 .sample-button > p {
 	padding: auto;
 	margin: auto;
-	overflow: scroll;
+	overflow: auto;
 }
 
 #add-sample {
