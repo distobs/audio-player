@@ -1,1 +1,2 @@
 FIX: loading two files causes them to be joined together.
+ADD: mixing and per-sample volume control.
