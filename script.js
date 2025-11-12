@@ -103,14 +103,17 @@ load_form.addEventListener("submit", async (event) => {
 
 /* SAMPLE LOGIC */
 
-async function make_playable(sample_object, sample_button) {
+async function make_playable(sample_object, sample_button, paragraph) {
 	sample_button.addEventListener("click", async () => {
 		const { audio, playing } = sample_object;
 
 		if (playing) {
+			// the great gambiarra
+			paragraph.textContent = "0" + paragraph.textContent.slice(1);
 			audio.pause();
 			audio.currentTime = 0;
 		} else {
+			paragraph.textContent = "1" + paragraph.textContent.slice(1);
 			await audio.play();
 		}
 
@@ -124,14 +127,14 @@ function update_samples(audio_samples) {
 	const paragraph = document.createElement("p");
 	const sample_object = audio_samples[audio_samples.length - 1];
 	const sample_name = sample_object.name;
-	const sample_name_node = document.createTextNode(sample_name);
+	const sample_name_node = document.createTextNode("0 " + sample_name);
 
 	paragraph.appendChild(sample_name_node);
 	sample_button.appendChild(paragraph);
 
 	sample_grid.insertBefore(sample_button, add_sample_button);
 
-	make_playable(sample_object, sample_button);
+	make_playable(sample_object, sample_button, paragraph);
 
 	sample_button.classList.add("sample-button");
 }
