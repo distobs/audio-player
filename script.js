@@ -6,13 +6,22 @@ const save_button = document.querySelector("#save-button")
 const load_form = document.querySelector("#load-form")
 let audio_samples = []
 
+/* VOLUME LOGIC */
+
+const master_slider = document.querySelector("#master-volume")
+let master_volume = master_slider.value / 100;
+
+master_slider.addEventListener("change", () => {
+	master_volume = master_slider.value / 100;
+});
+
 /* SAVING-LOADING LOGIC */
 
 async function make_exportable(samples) {
 	let exportable = [];
 
 	// sample of samples! all is sample!
-	for (sample of samples) {
+	for (let sample of samples) {
 		const name = sample.name;
 		const file = sample.file;
 		const filename = file.name;

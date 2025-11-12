@@ -118,3 +118,11 @@ body {
 .button-container > * {
 	margin: 1rem;
 }
+
+/* VOLUME */
+
+#master-volume-container {
+	text-align: center;
+	width: 50%;
+	margin: auto;
+}
