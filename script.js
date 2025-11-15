@@ -11,8 +11,24 @@ let audio_samples = []
 const master_slider = document.querySelector("#master-volume")
 let master_volume = master_slider.value / 100;
 
-master_slider.addEventListener("change", () => {
+function setup_display_volume(sample_object) {
+	const display_volume = sample_object.volume_slider;
+
+	display_volume.addEventListener("input", () => {
+		sample_object.audio.volume = (display_volume.value / 100) *
+			master_volume;
+		console.log(display_volume.value)
+		console.log(sample_object.audio.volume)
+	});
+}
+
+master_slider.addEventListener("input", () => {
 	master_volume = master_slider.value / 100;
+
+	for (sample of audio_samples) {
+		sample.audio.volume = (sample.volume_slider.value / 100) *
+			master_volume;
+	}
 });
 
 /* SAVING-LOADING LOGIC */
@@ -113,8 +129,10 @@ load_form.addEventListener("submit", async (event) => {
 /* SAMPLE LOGIC */
 
 async function make_playable(sample_object, sample_button, paragraph) {
+	const { audio } = sample_object;
+
 	sample_button.addEventListener("click", async () => {
-		const { audio, playing } = sample_object;
+		const { playing } = sample_object;
 
 		if (playing) {
 			// the great gambiarra
@@ -128,21 +146,38 @@ async function make_playable(sample_object, sample_button, paragraph) {
 
 		sample_object.playing = !sample_object.playing;
 	});
+
+	audio.addEventListener("ended", () => {
+		paragraph.textContent = "0" + paragraph.textContent.slice(1);
+	});
 }
 
 function update_samples(audio_samples) {
 	const sample_grid = document.querySelectorAll(".sample-grid")[0];
+	const button_wrapper = document.createElement("div");
 	const sample_button = document.createElement("div");
 	const paragraph = document.createElement("p");
 	const sample_object = audio_samples[audio_samples.length - 1];
 	const sample_name = sample_object.name;
 	const sample_name_node = document.createTextNode("0 " + sample_name);
+	const volume_slider = document.createElement("input");
+
+	volume_slider.type = "range";
+	volume_slider.classList.add("sample-volume-slider");
+	volume_slider.value = 100;
 
 	paragraph.appendChild(sample_name_node);
 	sample_button.appendChild(paragraph);
 
-	sample_grid.insertBefore(sample_button, add_sample_button);
+	button_wrapper.classList.add("sample-button-wrapper")
+	button_wrapper.appendChild(sample_button);
+	button_wrapper.appendChild(volume_slider);
 
+	sample_grid.insertBefore(button_wrapper, add_sample_button);
+
+	sample_object.volume_slider = volume_slider;
+
+	setup_display_volume(sample_object);
 	make_playable(sample_object, sample_button, paragraph);
 
 	sample_button.classList.add("sample-button");

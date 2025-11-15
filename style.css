@@ -121,6 +121,13 @@ body {
 
 /* VOLUME */
 
+.sample-button-wrapper {
+	display: inline;
+	margin: auto;
+	padding: auto;
+	text-align: center;
+}
+
 #master-volume-container {
 	text-align: center;
 	width: 50%;
