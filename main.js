@@ -40,6 +40,11 @@ function init(samples, dom) {
 	dom.close_btn.addEventListener('click', () => {
 		toggle_popup(dom);
 	});
+
+	dom.load.addEventListener("submit", async (event) => {
+		event.preventDefault();
+		process_load_form(samples, dom.load);
+	});
 }
 
 init(samples, dom);
