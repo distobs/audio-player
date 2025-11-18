@@ -6,6 +6,11 @@ class Sample {
 		this.file = file;
 		this.audio = new Audio(URL.createObjectURL(file));
 		this.playing = false;
+		this.sample_buton = null;
+	}
+
+	add_dom_btn(sample_button) {
+		this.sample_button = sample_button;
 	}
 };
 
@@ -94,6 +99,8 @@ export function update_samples(dom, sample) {
 	setup_display_volume(dom, sample);
 
 	make_playable(sample, sample_button, paragraph);
+
+	sample.add_dom_btn(sample_button);
 
 	sample_button.classList.add("sample-button");
 }

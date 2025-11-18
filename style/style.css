@@ -18,9 +18,7 @@ body {
 .sample-container {
 	width: 50%;
 	margin: auto;
-}
-
-.sample-grid {
+} .sample-grid {
 	display: grid;
 	margin: auto;
 	grid-template-columns: auto auto auto;
@@ -52,6 +50,11 @@ body {
 	background-color: white;
 	color: black;
 	cursor: pointer;
+}
+
+.sample-button-selected {
+	background-color: white;
+	color: black;
 }
 
 /* POPUP */
