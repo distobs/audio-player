@@ -16,8 +16,6 @@ export function process_form(dom, samples) {
 
 		samples.add(name, file);
 
-//		console.log(samples);
-
 		update_samples(dom, samples.tail());
 
 		toggle_popup(dom);

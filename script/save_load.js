@@ -1,3 +1,5 @@
+import { update_samples } from "./samples.js";
+
 /* SAVE */
 async function make_exportable(samples) {
 	let exportable = [];
@@ -59,7 +61,7 @@ function make_file(base64_data, name) {
 		{type: mime_type});
 }
 
-function load_imported(samples, imported) {
+function load_imported(dom, samples, imported) {
 	for (let sample of imported) {
 		if (!sample.name || !sample.audio_data) {
 			alert("JSON inválido.");
@@ -68,28 +70,22 @@ function load_imported(samples, imported) {
 		} else {
 			const name = sample.name;
 			const file = make_file(sample.audio_data, sample.file_name);
-			const audio = new Audio(URL.createObjectURL(file));
 
-			samples.push({
-				name: name,
-				file: file,
-				audio: audio,
-				playing: false
-			});
+			samples.add(name, file);
 
-			update_samples(audio_samples);
+			update_samples(dom, samples.tail());
 		}
 	}
 }
 
-export async function process_load_form(samples, load) {
-	const file = load.elements.file.files[0];
+export async function process_load_form(dom, samples) {
+	const file = dom.load.elements.file.files[0];
 
 	if (file.type != "application/json") {
 		alert("Favor, selecionar um arquivo JSON.");
 	} else {
 		let imported = JSON.parse(await file.text());
 
-		load_imported(samples, imported);
+		load_imported(dom, samples, imported);
 	}
 }

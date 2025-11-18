@@ -44,7 +44,7 @@ function init(samples, dom) {
 
 	dom.load.addEventListener("submit", async (event) => {
 		event.preventDefault();
-		process_load_form(samples, dom.load);
+		process_load_form(dom, samples);
 	});
 
 	dom.save_btn.addEventListener("click", async () => {
