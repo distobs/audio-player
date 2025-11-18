@@ -1,6 +1,7 @@
 import { SampleList } from "./samples.js";
 import { process_form } from "./form.js";
 import { update_volumes } from "./volume.js";
+import { setup_save_button, process_load_form } from "./save_load.js";
 
 const dom = {
 	add_btn: document.querySelector("#add-sample"),
@@ -15,7 +16,7 @@ const dom = {
 
 const samples = new SampleList();
 
-function toggle_popup(dom) {
+export function toggle_popup(dom) {
 	if (dom.popup.classList.contains("hidden")) {
 		dom.popup.classList.remove("hidden");
 	} else {
@@ -44,6 +45,10 @@ function init(samples, dom) {
 	dom.load.addEventListener("submit", async (event) => {
 		event.preventDefault();
 		process_load_form(samples, dom.load);
+	});
+
+	dom.save_btn.addEventListener("click", async () => {
+		setup_save_button(samples);
 	});
 }
 

@@ -4,7 +4,7 @@ class Sample {
 	constructor(name, file) {
 		this.name = name;
 		this.file = file;
-		this.audio = URL.createObjectURL(file);
+		this.audio = new Audio(URL.createObjectURL(file));
 		this.playing = false;
 	}
 };
@@ -49,7 +49,10 @@ function setup_wrapper(sample_button, volume_slider) {
 
 	button_wrapper.appendChild(sample_button);
 	button_wrapper.appendChild(volume_slider);
+
 	button_wrapper.classList.add("sample-button-wrapper")
+
+	return button_wrapper;
 }
 
 function update_grid(dom, button_wrapper) {
@@ -71,9 +74,11 @@ async function make_playable(sample, sample_button, paragraph) {
 			await audio.play();
 		}
 
-		sample_object.playing = !sample_object.playing;
+		sample.playing = !sample.playing;
 	});
 
+	console.log(sample);
+	console.log(audio);
 	audio.addEventListener("ended", () => {
 		paragraph.textContent = "0" + paragraph.textContent.slice(1);
 	});
@@ -82,11 +87,11 @@ async function make_playable(sample, sample_button, paragraph) {
 export function update_samples(dom, sample) {
 	const { sample_button, paragraph } = setup_button(sample);
 	const volume_slider = setup_slider(sample);
-	const button_wrapper = setup_wrapper(sample, sample_button, volume_slider);
+	const button_wrapper = setup_wrapper(sample_button, volume_slider);
 
 	update_grid(dom, button_wrapper);
 
-	setup_display_volume(sample);
+	setup_display_volume(dom, sample);
 
 	make_playable(sample, sample_button, paragraph);
 

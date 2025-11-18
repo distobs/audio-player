@@ -1,3 +1,4 @@
+import { toggle_popup } from "./main.js";
 import { update_samples } from "./samples.js";
 
 export function process_form(dom, samples) {
@@ -15,9 +16,11 @@ export function process_form(dom, samples) {
 
 		samples.add(name, file);
 
+//		console.log(samples);
+
 		update_samples(dom, samples.tail());
 
-		toggle_popup(add_sample_popup);
+		toggle_popup(dom);
 
 		dom.smp_form.reset();
 	}

@@ -27,15 +27,12 @@ async function make_exportable(samples) {
 	return exportable;
 }
 
-//function setup_save_button
-
-/*
-save_button.addEventListener("click", async () => {
-	if (audio_samples.length == 0) {
+export async function setup_save_button(samples) {
+	if (samples.list.length == 0) {
 		alert("Adicione os samples para salvá-los.");
 		return;
 	} else {
-		const exportable = await make_exportable(audio_samples);
+		const exportable = await make_exportable(samples);
 		const sample_json = JSON.stringify(exportable, null, 2);
 		const file = new Blob([sample_json], {type: "application/json"});
 		const url = URL.createObjectURL(file);
@@ -50,8 +47,7 @@ save_button.addEventListener("click", async () => {
 
 		URL.revokeObjectURL(url);
 	}
-});
-*/
+}
 
 /* LOAD */
 function make_file(base64_data, name) {
