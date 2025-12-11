@@ -1,10 +1,11 @@
 import { setup_display_volume } from "./volume.js";
 
 class Sample {
-	constructor(name, file) {
+	constructor(name, file, key) {
 		this.name = name;
 		this.file = file;
 		this.audio = new Audio(URL.createObjectURL(file));
+		this.key = key;
 		this.playing = false;
 	}
 };

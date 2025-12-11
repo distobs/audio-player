@@ -16,6 +16,8 @@ const dom = {
 
 const samples = new SampleList();
 
+let mouseX = 0, mouseY = 0
+
 export function toggle_popup(dom) {
 	if (dom.popup.classList.contains("hidden")) {
 		dom.popup.classList.remove("hidden");
@@ -50,6 +52,25 @@ function init(samples, dom) {
 	dom.save_btn.addEventListener("click", async () => {
 		setup_save_button(samples);
 	});
+
+
+	addEventListener("mousemove", (event) => {
+		mouseX = event.clientX;
+		mouseY = event.clientY;
+	})
+
+	addEventListener("keydown", (event) => {
+		console.log("oi")
+		if (event.key == "Enter") {
+			const evt = new MouseEvent("click", {
+				clientX: mouseX, 
+				clientY: mouseY,
+				button: 0,
+			});
+
+			document.dispatchEvent(evt)
+		}
+	})
 }
 
 init(samples, dom);
